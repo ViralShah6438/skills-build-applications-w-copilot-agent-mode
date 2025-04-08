@@ -5,8 +5,6 @@ from pymongo import MongoClient
 from datetime import timedelta
 from bson import ObjectId
 
-print("Debug: Command class loaded successfully")
-
 class Command(BaseCommand):
     help = 'Populate the database with test data for users, teams, activities, leaderboard, and workouts'
 
@@ -22,7 +20,7 @@ class Command(BaseCommand):
         db.leaderboard.drop()
         db.workouts.drop()
 
-        # Clear existing data
+        # Clear existing data in Django models
         User.objects.all().delete()
         Team.objects.all().delete()
         Activity.objects.all().delete()
@@ -40,16 +38,10 @@ class Command(BaseCommand):
         User.objects.bulk_create(users)
 
         # Create teams
-        teams = [
-            Team(_id=ObjectId(), name='Blue Team', members=[str(user._id) for user in users]),
-            Team(_id=ObjectId(), name='Gold Team', members=[str(user._id) for user in users]),
-        ]
-        Team.objects.bulk_create(teams)
-
-        # Assign users to teams
-        for team in teams:
-            team.members = [str(user._id) for user in users]
-            team.save()
+        team = Team(name='Blue Team', members=[
+            {"_id": str(user._id), "username": user.username, "email": user.email} for user in users
+        ])
+        team.save()
 
         # Create activities
         activities = [
@@ -63,8 +55,7 @@ class Command(BaseCommand):
 
         # Create leaderboard entries
         leaderboard_entries = [
-            Leaderboard(team=teams[0], score=100),
-            Leaderboard(team=teams[1], score=90),
+            Leaderboard(team=team, score=100),
         ]
         Leaderboard.objects.bulk_create(leaderboard_entries)
 
