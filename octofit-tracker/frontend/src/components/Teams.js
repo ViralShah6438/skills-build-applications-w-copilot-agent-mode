@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Teams() {
   const [teams, setTeams] = useState([]);
 
+  // Fetch teams from the API
   useEffect(() => {
     fetch('https://automatic-winner-979rjv45j7qp2xv5x-8000.app.github.dev/api/teams')
       .then(response => response.json())
