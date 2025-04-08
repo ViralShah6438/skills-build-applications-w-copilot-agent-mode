@@ -6,7 +6,9 @@ import Teams from './components/Teams';
 import Users from './components/Users';
 import Workouts from './components/Workouts';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../public/octofitapp-small.png';
+
+// Update the logo import to use the correct public path
+const logo = '/octofitapp-small.png';
 
 function App() {
   return (

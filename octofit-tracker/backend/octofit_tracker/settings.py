@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'corsheaders',
     'octofit_tracker',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = "octofit_tracker.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -140,7 +141,23 @@ CORS_ALLOW_HEADERS = [
     '*',
 ]
 
+# Add explicit CORS_ALLOWED_ORIGINS configuration
+CORS_ALLOWED_ORIGINS = [
+    'https://automatic-winner-979rjv45j7qp2xv5x-3000.app.github.dev',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+]
+
+CORS_ALLOWED_ORIGINS.append('https://github.dev')
+
 # Disable SSL redirection and secure cookies for testing
 SECURE_SSL_REDIRECT = False
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
+
+# Temporarily allow unauthenticated access for testing purposes
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+}
