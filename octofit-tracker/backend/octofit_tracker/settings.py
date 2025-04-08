@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-$1519a6&&!$n(##h^u@cr=sw51)%(+a7+nzq$x4o9v!t6@^_td
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['automatic-winner-979rjv45j7qp2xv5x-8000.app.github.dev', 'localhost', '127.0.0.1', '0.0.0.0']
 
 
 # Application definition
@@ -139,3 +139,8 @@ CORS_ALLOW_METHODS = [
 CORS_ALLOW_HEADERS = [
     '*',
 ]
+
+# Disable SSL redirection and secure cookies for testing
+SECURE_SSL_REDIRECT = False
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False

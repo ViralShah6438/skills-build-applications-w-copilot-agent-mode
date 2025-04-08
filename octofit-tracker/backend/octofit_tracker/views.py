@@ -1,6 +1,14 @@
 from rest_framework import viewsets
 from .models import User, Team, Activity, Leaderboard, Workout
 from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, LeaderboardSerializer, WorkoutSerializer
+from django.http import JsonResponse
+
+def api_root(request):
+    return JsonResponse({
+        "message": "Welcome to the OctoFit API!",
+        "codespace_url": "https://automatic-winner-979rjv45j7qp2xv5x-8000.app.github.dev",
+        "localhost_url": "http://localhost:8000"
+    })
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
