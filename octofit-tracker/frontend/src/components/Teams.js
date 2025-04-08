@@ -6,7 +6,7 @@ function Teams() {
 
   // Fetch teams from the API
   useEffect(() => {
-    fetch('https://automatic-winner-979rjv45j7qp2xv5x-8000.app.github.dev/api/teams')
+    fetch('https://automatic-winner-979rjv45j7qp2xv5x-8000.app.github.dev/api/teams/')
       .then(response => response.json())
       .then(data => setTeams(data));
   }, []);

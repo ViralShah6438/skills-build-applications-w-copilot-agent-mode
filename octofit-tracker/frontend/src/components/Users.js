@@ -6,7 +6,7 @@ function Users() {
 
   // Fetch users from the API
   useEffect(() => {
-    fetch('https://automatic-winner-979rjv45j7qp2xv5x-8000.app.github.dev/api/users')
+    fetch('https://automatic-winner-979rjv45j7qp2xv5x-8000.app.github.dev/api/users/')
       .then(response => response.json())
       .then(data => setUsers(data));
   }, []);

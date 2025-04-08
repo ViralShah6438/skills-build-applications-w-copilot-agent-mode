@@ -6,7 +6,7 @@ function Leaderboard() {
 
   // Fetch leaderboard data from the API
   useEffect(() => {
-    fetch('https://automatic-winner-979rjv45j7qp2xv5x-8000.app.github.dev/api/leaderboard')
+    fetch('https://automatic-winner-979rjv45j7qp2xv5x-8000.app.github.dev/api/leaderboard/')
       .then(response => response.json())
       .then(data => setLeaderboard(data));
   }, []);
